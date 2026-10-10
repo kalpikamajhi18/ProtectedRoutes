@@ -1,0 +1,130 @@
+<nav class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+            NOVA<span>.</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/about">About</a>
+
+            <a href="/services">Services</a>
+
+            <a href="/projects">Projects</a>
+
+            <a href="/contact">Contact</a>
+
+        </div>
+
+        <div class="nav-cta">
+            <a href="/login" class="nav-btn nav-btn-outline">
+                Log In
+            </a>
+
+            <a href="/signup" class="nav-btn nav-btn-primary">
+                sign up →
+            </a>
+        </div>
+
+    </div>
+
+</nav>
+
+
+<style>
+
+    .navbar {
+        border-bottom: 1px solid #222;
+    }
+
+    .nav-container {
+        height: 80px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 27px;
+        font-weight: 800;
+    }
+
+    .logo span {
+        color: #8b5cf6;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        color: #999;
+        font-size: 14px;
+        transition: .3s;
+    }
+
+    .nav-links a:hover {
+        color: #fff;
+    }
+
+    .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .nav-btn {
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: transform 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .nav-btn-outline {
+        background: transparent;
+        color: #fff;
+        border: 1px solid #333;
+    }
+
+    .nav-btn-outline:hover {
+        border-color: #666;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-btn-primary {
+        background: #fff;
+        color: #000;
+    }
+
+    .nav-btn-primary:hover {
+        background: #e6e6e6;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    @media(max-width: 768px) {
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+    }
+
+</style>

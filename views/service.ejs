@@ -1,0 +1,258 @@
+<%- include("partials/header", { title: "Services" }) %>
+
+<%- include("partials/navbar") %>
+
+
+<!-- SECTION 1 -->
+
+<section class="services-hero">
+
+    <span>OUR SERVICES</span>
+
+    <h1>
+        We build digital
+        <strong>solutions.</strong>
+    </h1>
+
+    <p>
+        Strategy, design, development and marketing
+        under one roof.
+    </p>
+
+</section>
+
+
+<!-- SECTION 2 -->
+
+<section class="services-list">
+
+    <div class="service">
+
+        <b>01</b>
+
+        <div>
+            <h2>Web Development</h2>
+            <p>
+                High-performance websites and web
+                applications built with modern technology.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="service">
+
+        <b>02</b>
+
+        <div>
+            <h2>UI / UX Design</h2>
+            <p>
+                User-focused interfaces that look beautiful
+                and feel simple to use.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="service">
+
+        <b>03</b>
+
+        <div>
+            <h2>Digital Marketing</h2>
+            <p>
+                Performance-driven campaigns designed
+                to generate leads and sales.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SECTION 3 -->
+
+<section class="process">
+
+    <span>OUR PROCESS</span>
+
+    <h2>
+        From idea to launch.
+    </h2>
+
+    <div class="process-grid">
+
+        <div>
+            <b>01</b>
+            <h3>Discover</h3>
+            <p>Understand your business and goals.</p>
+        </div>
+
+        <div>
+            <b>02</b>
+            <h3>Design</h3>
+            <p>Create the visual experience.</p>
+        </div>
+
+        <div>
+            <b>03</b>
+            <h3>Build</h3>
+            <p>Develop and test the product.</p>
+        </div>
+
+        <div>
+            <b>04</b>
+            <h3>Launch</h3>
+            <p>Deploy and optimize for growth.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SECTION 4 -->
+
+<section class="services-cta">
+
+    <h2>
+        Have a project
+        in mind?
+    </h2>
+
+    <a href="/contact">
+        Let's Talk →
+    </a>
+
+</section>
+
+
+<style>
+
+    section {
+        padding: 100px 8%;
+    }
+
+    .services-hero {
+        min-height: 65vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .services-hero span,
+    .process > span {
+        color: #8b5cf6;
+        letter-spacing: 2px;
+        font-size: 13px;
+    }
+
+    .services-hero h1 {
+        max-width: 900px;
+        font-size: clamp(55px, 8vw, 100px);
+        line-height: .9;
+        margin: 25px 0;
+    }
+
+    .services-hero strong {
+        color: #8b5cf6;
+    }
+
+    .services-hero p {
+        color: #999;
+        font-size: 19px;
+    }
+
+    .services-list {
+        background: #111;
+    }
+
+    .service {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 40px;
+        padding: 45px 0;
+        border-bottom: 1px solid #292929;
+    }
+
+    .service b {
+        color: #8b5cf6;
+    }
+
+    .service h2 {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .service p {
+        color: #888;
+        max-width: 600px;
+        line-height: 1.7;
+    }
+
+    .process h2 {
+        font-size: 60px;
+        margin: 20px 0 50px;
+    }
+
+    .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .process-grid div {
+        padding: 30px;
+        border: 1px solid #292929;
+        border-radius: 18px;
+    }
+
+    .process-grid b {
+        color: #8b5cf6;
+    }
+
+    .process-grid h3 {
+        margin: 50px 0 15px;
+        font-size: 25px;
+    }
+
+    .process-grid p {
+        color: #777;
+    }
+
+    .services-cta {
+        text-align: center;
+        background: #171022;
+    }
+
+    .services-cta h2 {
+        font-size: clamp(50px, 7vw, 90px);
+        margin-bottom: 30px;
+    }
+
+    .services-cta a {
+        display: inline-block;
+        background: #8b5cf6;
+        padding: 15px 25px;
+        border-radius: 30px;
+    }
+
+    @media(max-width: 700px) {
+
+        .process-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .service {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+
+<%- include("partials/footer") %>
