@@ -11,22 +11,24 @@ const userCreate = new mongoose.Schema(
 
         email: {
             type: String,
-            trim:true,
-            lowercase:true,
-            required:true,
-            unique:true
+            trim: true,
+            lowercase: true,
+            required: true,
+            unique: true
         },
 
-        password:{
+        password: {
             type: String,
-            trim:true,
-            required:true,
+            trim: true,
+            required: true,
             minLength: 8
         },
-        
+
+        refreshToken: { type: String, default: null },
+
     },
-    
-    {timestamps:true }
+
+    { timestamps: true }
 )
 
 
