@@ -1,37 +1,40 @@
 import {Router} from 'express'
-import { authenticateToken } from '../controller/auth.controller';
+import { authenticateToken } from '../controller/auth.controller.js';
+import userCreates from '../models/user.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const router = Router()
 
-app.get("/", authenticateToken, (req, res) => {
+router.get("/", authenticateToken, (req, res) => {
     res.render("home");
 });
 
-app.get("/about",authenticateToken, (req, res) => {
+router.get("/about",authenticateToken, (req, res) => {
     res.render("about");
 });
 
-app.get("/services",authenticateToken, (req, res) => {
+router.get("/services",authenticateToken, (req, res) => {
     res.render("service");
 });
 
-app.get("/projects",authenticateToken, (req, res) => {
+router.get("/projects",authenticateToken, (req, res) => {
     res.render("project");
 });
 
-app.get("/contact", (req, res) => {
+router.get("/contact", (req, res) => {
     res.render("contact");
 });
 
 // Login page
-app.get("/login", (req, res) => {
+router.get("/login", (req, res) => {
     res.render("login", {
         title: "Login"
     });
 });
 
 // Login form submission
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     // 1. User ko email se find karo 
     const user = await userCreates.findOne({ email });
@@ -44,8 +47,8 @@ app.post("/login", async (req, res) => {
         return res.send("Galat password!");
     }
     // 3. Dono tokens generate karo   
-    const accessToken = jwt.sign({ _id: user._id, email: user.email }, process.env.ACCESS_TOKEN_SECRET || "accessSecret123", { expiresIn: "30s" });
-    const refreshToken = jwt.sign({ _id: user._id }, process.env.REFRESH_TOKEN_SECRET || "refreshSecret456", { expiresIn: "2m" });
+    const accessToken = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET || "accessSecret123", { expiresIn: "30s" });
+    const refreshToken = jwt.sign({ email: user.email}, process.env.REFRESH_TOKEN_SECRET || "refreshSecret456", { expiresIn: "1m" });
     // 4. Naya refreshToken database me update karo
     user.refreshToken = refreshToken;
     await user.save();
@@ -56,14 +59,14 @@ app.post("/login", async (req, res) => {
 });
 
 // Signup page
-app.get("/signup", (req, res) => {
+router.get("/signup", (req, res) => {
     res.render("signup", {
         title: "Create Account"
     });
 });
 
 // Signup form submission
-app.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
     const { name, email, password } = req.body;
 
     const salt = await bcrypt.genSalt(10);
@@ -78,7 +81,7 @@ app.post("/signup", async (req, res) => {
     const acessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
 
 
-    const refreshToken = jwt.sign({ email: email }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "2m" });
+    const refreshToken = jwt.sign({ email: email }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1m" });
 
     userSignup.refreshToken = refreshToken;
     await userSignup.save();
@@ -91,7 +94,7 @@ app.post("/signup", async (req, res) => {
     res.redirect("/");
 });
 
-app.get("/logout", async (req, res) => {
+router.get("/logout", async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
     // Database se refresh token hata do   
     if (refreshToken) {

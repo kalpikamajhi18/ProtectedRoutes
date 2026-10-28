@@ -24,6 +24,8 @@ export const authenticateToken = async (req, res, next) => {
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
+     res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
       return res.redirect("/login");
     }
 
@@ -36,17 +38,14 @@ export const authenticateToken = async (req, res, next) => {
     const user = await userCreates.findOne({ email: decodedRefresh.email});
 
     if (!user || user.refreshToken !== refreshToken) {
+       res.clearCookie("accessToken");
+      res.clearCookie("refreshToken");
       return res.redirect("/login");
     }
 
     // 4. Naya access token generate karo
     const newAccessToken = jwt.sign(
-      {
-        _id: user._id,
-        email: user.email
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30s" }
+      { email: user.email },process.env.ACCESS_TOKEN_SECRET,{ expiresIn: "30s" }
     );
 
     // 5. Browser ki access-token cookie update karo
@@ -67,6 +66,8 @@ export const authenticateToken = async (req, res, next) => {
     return next();
 
   } catch (error) {
+     res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
     return res.redirect("/login");
   }
 };
